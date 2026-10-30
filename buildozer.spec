@@ -13,4 +13,4 @@ fullscreen = 0
 log_level = 2
 
 [app:android]
-allow_backup = False
+archs = arm64-v8a, armeabi-v7a
