@@ -11,9 +11,14 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt update
-          sudo apt install -y openjdk-17-jdk zip unzip
+          sudo apt install -y openjdk-17-jdk python3-pip zip unzip libssl-dev libffi-dev libsqlite3-dev libbz2-dev zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libreadline-dev libgtk-3-dev libblas-dev libatlas-base-dev gfortran ccache autoconf automake libtool pkg-config
           pip install --upgrade pip
           pip install buildozer cython==0.29.33
+          mkdir -p ~/.buildozer
+      - name: Accept licenses
+        run: |
+          yes | sdkmanager --licenses || true
+          mkdir -p ~/.android && touch ~/.android/repositories.cfg
       - name: Build APK
         run: |
           buildozer android debug
